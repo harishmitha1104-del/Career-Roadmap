@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HARISHMITHA - Discover personalized career paths, explore visual roadmaps, track skills progress, and receive AI-driven learning and interview recommendations.">
+  <title>HARISHMITHA | Career Path Roadmap Platform</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Navigation Bar -->
+    <header class="app-header" id="main-header">
+      <div class="logo-container">
+        <span class="logo-text">HARISHMITHA</span>
+      </div>
+      <nav class="nav-menu" role="navigation" aria-label="Main Navigation">
+        <span class="nav-link active" data-target="home-section" id="nav-home">Home</span>
+        <span class="nav-link" data-target="generator-section" id="nav-generator">Roadmap Generator</span>
+        <span class="nav-link" data-target="roadmap-section" id="nav-roadmap">Active Roadmap</span>
+        <span class="nav-link" data-target="dashboard-section" id="nav-dashboard">Dashboard</span>
+        <span class="nav-link" data-target="ai-section" id="nav-ai">AI Studio</span>
+      </nav>
+      <div class="header-actions">
+        <button class="btn-theme-toggle" id="theme-toggle" aria-label="Toggle Theme" title="Toggle Light/Dark Mode">
+          <!-- Moon Icon (Light Mode toggle) -->
+          <svg id="theme-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+          <!-- Sun Icon (Dark Mode toggle) -->
+          <svg id="theme-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+        </button>
+        <a href="harishmitha_soft_copy.html" class="btn-portfolio" id="portfolio-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          Soft Copy
+        </a>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="app-main" id="main-content">
+      
+      <!-- 1. Home Section -->
+      <section class="app-section active" id="home-section">
+        <div class="hero-section">
+          <span class="hero-tagline">Map Your Professional Future</span>
+          <h1 class="hero-title">Build Your Career Roadmap</h1>
+          <p class="hero-subtitle">Discover careers, learn required skills, find courses, verify certifications, and plan your complete path to job readiness.</p>
+          <div class="search-container">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" id="career-search" placeholder="Search career paths (e.g., Data Scientist, AI Engineer, Developer)...">
+          </div>
+        </div>
+
+        <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;">Explore Popular Career Paths</h2>
+        <div class="careers-grid" id="careers-container">
+          <!-- Mapped dynamically from data.js -->
+        </div>
+      </section>
+
+      <!-- 2. Roadmap Generator Form Section -->
+      <section class="app-section" id="generator-section">
+        <div class="generator-container">
+          <div class="generator-header">
+            <h2>Personalized Roadmap Generator</h2>
+            <p class="generator-subtitle">Input your profile and aspirations to construct a tailored sequence of stages, milestones, and recommended tools.</p>
+          </div>
+          
+          <form id="roadmap-form" onsubmit="event.preventDefault();">
+            <div class="form-group">
+              <label class="form-label" for="form-target-career">Desired Career Target</label>
+              <select class="form-control" id="form-target-career" required>
+                <!-- Dynamically loaded from data.js -->
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="form-education">Current Education Level</label>
+              <input type="text" class="form-control" id="form-education" placeholder="e.g. Second Year B.Sc Computer Technology" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Skills You Already Have</label>
+              <div class="checkbox-group" id="form-skills-checkboxes">
+                <!-- Dynamically loaded skills list -->
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="form-study-hours">Available Study Hours (Per Week)</label>
+              <input type="number" class="form-control" id="form-study-hours" min="1" max="168" placeholder="e.g. 15" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="form-timeline">Desired Target Timeline (Months)</label>
+              <input type="number" class="form-control" id="form-timeline" min="1" max="48" placeholder="e.g. 6" required>
+            </div>
+
+            <button type="submit" class="btn-primary btn-generate" id="btn-submit-generator">Generate My Career Roadmap</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- 3. Interactive Roadmap Section -->
+      <section class="app-section" id="roadmap-section">
+        <div class="roadmap-container">
+          
+          <!-- Roadmap Header & Summary -->
+          <div class="roadmap-header-card" id="roadmap-meta-card">
+            <div>
+              <span class="career-badge" id="active-roadmap-badge">Active Track</span>
+              <h2 id="active-roadmap-title" style="font-size: 1.8rem; margin: 0.5rem 0;">Data Scientist Roadmap</h2>
+              <p id="active-roadmap-desc" style="color: var(--text-secondary); max-width: 600px;">Loading roadmap details...</p>
+            </div>
+            
+            <div class="roadmap-progress-block">
+              <div class="progress-label-bar">
+                <span>Learning Progress</span>
+                <span id="active-roadmap-pct">0%</span>
+              </div>
+              <div class="progress-track-bar">
+                <div class="progress-fill-bar" id="active-roadmap-progress-bar"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Left column: Tree Nodes -->
+          <div class="tree-roadmap" id="active-roadmap-tree">
+            <!-- Stage cards populated dynamically from active roadmap -->
+          </div>
+
+          <!-- Right column: Sidebar (Resources, Tools, Certifications) -->
+          <div class="roadmap-sidebar">
+            <div class="sidebar-card">
+              <h3>Essential Tools</h3>
+              <div class="checkbox-group" id="roadmap-tools-list" style="grid-template-columns: 1fr;">
+                <!-- Mapped from active career path tools -->
+              </div>
+            </div>
+
+            <div class="sidebar-card">
+              <h3>Recommended Certifications</h3>
+              <ul class="sidebar-list" id="roadmap-certs-list">
+                <!-- Recommended certifications list -->
+              </ul>
+            </div>
+
+            <div class="sidebar-card">
+              <h3>Top Online Courses</h3>
+              <ul class="sidebar-list" id="roadmap-courses-list">
+                <!-- Recommended courses list -->
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 4. Dashboard Section -->
+      <section class="app-section" id="dashboard-section">
+        <div class="dashboard-grid">
+          
+          <!-- Stats header grid -->
+          <div class="dashboard-stats">
+            <div class="stat-card">
+              <div class="stat-icon">📊</div>
+              <div class="stat-info">
+                <span class="stat-value" id="dash-completed-skills">7</span>
+                <span class="stat-label">Skills Learned</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">🏆</div>
+              <div class="stat-info">
+                <span class="stat-value" id="dash-achievements-count">3</span>
+                <span class="stat-label">Achievements</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">🎯</div>
+              <div class="stat-info">
+                <span class="stat-value" id="dash-pending-goals">2</span>
+                <span class="stat-label">Active Goals</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">🗺️</div>
+              <div class="stat-info">
+                <span class="stat-value" id="dash-saved-roadmaps">1</span>
+                <span class="stat-label">Saved Tracks</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Left column: Profile & Goal Setting -->
+          <div>
+            <div class="dashboard-card-full">
+              <h2 style="margin-bottom: 1.5rem;">Weekly Goals Tracker</h2>
+              <div class="goal-input-group">
+                <input type="text" class="form-control" id="new-goal-text" placeholder="Set a new roadmap milestone (e.g. Master Pandas library)...">
+                <button class="btn-primary" id="btn-add-goal" style="white-space: nowrap;">Add Goal</button>
+              </div>
+              <div class="goal-list" id="dashboard-goals-container">
+                <!-- User goals -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Right column: Achievements Wallet -->
+          <div>
+            <div class="dashboard-card-full">
+              <h2 style="margin-bottom: 1.5rem;">Achievements & Badges</h2>
+              <div class="badge-container" id="dashboard-badges-container">
+                <!-- Achievement badges mapped from UserProgress -->
+              </div>
+            </div>
+            
+            <div class="dashboard-card-full">
+              <h2>Verified Credentials</h2>
+              <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0.5rem 0 1.5rem 0;">Direct access to your verified academic transcripts and internship certificates.</p>
+              <a href="harishmitha_soft_copy.html" class="btn-secondary" style="display: block; text-align: center; font-weight: 600;">Open Certificate Wallet (Soft Copies)</a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 5. AI Studio Section -->
+      <section class="app-section" id="ai-section">
+        <h2 style="font-size: 2rem; margin-bottom: 2rem; text-align: center;">AI Career Co-Pilot Studio</h2>
+        <div class="ai-layout">
+          
+          <!-- AI tabs switcher -->
+          <div class="ai-sidebar">
+            <button class="ai-tab-btn active" data-pane="career-rec-pane">AI Recommendation Engine</button>
+            <button class="ai-tab-btn" data-pane="gap-analysis-pane">AI Skill Gap Analysis</button>
+            <button class="ai-tab-btn" data-pane="learning-path-pane">AI Suggestions Engine</button>
+            <button class="ai-tab-btn" data-pane="resume-improve-pane">AI Resume Improver</button>
+            <button class="ai-tab-btn" data-pane="interview-prep-pane">AI Interview Preparation</button>
+          </div>
+
+          <!-- AI content workspace panes -->
+          <div class="ai-content">
+            
+            <!-- Tab Pane 1: AI Career Recommendation -->
+            <div class="ai-pane active" id="career-rec-pane">
+              <h3>AI Career Recommendation Engine</h3>
+              <p style="color: var(--text-secondary); margin: 0.5rem 0 1.5rem 0;">Our neural recommendation matcher analyzes your educational profile and core skillset keywords to identify your most aligned career paths.</p>
+              
+              <div class="form-group">
+                <label class="form-label">Analyze Profile For:</label>
+                <div class="form-control" style="font-weight: 600;" id="ai-rec-profile-name">Ms. HARISHMITHA J</div>
+              </div>
+              <button class="btn-primary" id="btn-run-career-rec">Execute Career Compatibility Scan</button>
+              
+              <div class="ai-result-box" id="career-rec-results">
+                <span class="text-muted">Click the button above to scan profile compatibility...</span>
+              </div>
+            </div>
+
+            <!-- Tab Pane 2: AI Skill Gap Analysis -->
+            <div class="ai-pane" id="gap-analysis-pane">
+              <h3>AI Skill Gap Analyzer</h3>
+              <p style="color: var(--text-secondary); margin: 0.5rem 0 1.5rem 0;">Computes structural gaps between your current catalog of mastered capabilities and your desired target job roadmap.</p>
+              
+              <div class="form-group">
+                <label class="form-label" for="ai-gap-target">Select Target Career Path</label>
+                <select class="form-control" id="ai-gap-target">
+                  <!-- Mapped from careerPaths -->
+                </select>
+              </div>
+              <button class="btn-primary" id="btn-run-gap-analysis">Analyze Required Skills Gap</button>
+              
+              <div class="ai-result-box" id="gap-analysis-results">
+                <span class="text-muted">Initiate comparison analysis to map path requirements...</span>
+              </div>
+            </div>
+
+            <!-- Tab Pane 3: AI Learning Path Suggestions -->
+            <div class="ai-pane" id="learning-path-pane">
+              <h3>AI Learning Path Suggester</h3>
+              <p style="color: var(--text-secondary); margin: 0.5rem 0 1.5rem 0;">Generates dedicated micro-learning syllabus suggestions, schedules, and recommended reading resources based on your weekly study hours availability.</p>
+              
+              <div class="form-group">
+                <label class="form-label" for="ai-suggest-hours">Available Hours / Week</label>
+                <input type="number" class="form-control" id="ai-suggest-hours" value="15">
+              </div>
+              <button class="btn-primary" id="btn-run-suggestions">Generate Weekly Training Syllabus</button>
+              
+              <div class="ai-result-box" id="suggestions-results">
+                <span class="text-muted">Set available weekly time blocks and generate training schedules...</span>
+              </div>
+            </div>
+
+            <!-- Tab Pane 4: AI Resume Improvement Tips -->
+            <div class="ai-pane" id="resume-improve-pane">
+              <h3>AI Resume Quality Optimizer</h3>
+              <p style="color: var(--text-secondary); margin: 0.5rem 0 1.5rem 0;">Analyzes resume copy and provides actionable suggestions, phrasing revisions, and formatting enhancements to pass automated ATS filters.</p>
+              
+              <div class="form-group">
+                <label class="form-label" for="resume-paste-area">Paste Resume Markdown / Text Content</label>
+                <textarea class="form-control" id="resume-paste-area" rows="8" placeholder="Paste your resume content here (e.g. Ms. HARISHMITHA J, Second Year B.Sc Computer Technology, PSG College, Completed Python and SQL coursework...)"></textarea>
+              </div>
+              <button class="btn-primary" id="btn-run-resume-opt">Optimize Resume Copy</button>
+              
+              <div class="ai-result-box" id="resume-opt-results">
+                <span class="text-muted">Submit your resume text to evaluate ATS optimization scores...</span>
+              </div>
+            </div>
+
+            <!-- Tab Pane 5: AI Interview Prep Recommendations -->
+            <div class="ai-pane" id="interview-prep-pane">
+              <h3>AI Interview Preparation Simulator</h3>
+              <p style="color: var(--text-secondary); margin: 0.5rem 0 1.5rem 0;">Prepares specific technical, architectural, and behavioral practice questions along with suggested optimal answer structures.</p>
+              
+              <div class="form-group">
+                <label class="form-label" for="ai-interview-target">Target Career Role</label>
+                <select class="form-control" id="ai-interview-target">
+                  <!-- Mapped from careerPaths -->
+                </select>
+              </div>
+              <button class="btn-primary" id="btn-run-interview-prep">Generate Tailored Interview Guide</button>
+              
+              <div class="ai-result-box" id="interview-prep-results">
+                <span class="text-muted">Select a career track and generate questions for review...</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border-color); background-color: var(--bg-secondary);">
+      <p>&copy; 2026 HARISHMITHA Roadmap Platform. Empowering students and professionals at PSG College of Arts and Science and beyond.</p>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Harishmitha Soft Copy - Digital Portfolio, verified academic certificates, and internship achievements showcase.">
+  <title>Harishmitha Soft Copy | Digital Credentials & Certificates Wallet</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Portfolio specific overrides for credential visual layout */
+    .cert-wallet-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+    .cert-control-panel {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius-lg);
+      padding: 2rem;
+      box-shadow: var(--card-shadow);
+      margin-bottom: 2rem;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    @media (max-width: 768px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-container">
+        <span class="logo-text">Harishmitha Soft Copy</span>
+      </div>
+      <div class="header-actions">
+        <button class="btn-theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
+          <svg id="theme-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+          <svg id="theme-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+        </button>
+        <a href="index.html" class="btn-portfolio" style="background: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--border-color); box-shadow: none;">
+          ← Back to Roadmaps
+        </a>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main class="app-main">
+      <div class="cert-wallet-container">
+        
+        <!-- Showcase Header -->
+        <div class="portfolio-header">
+          <span class="hero-tagline">Academic & Professional Wallet</span>
+          <h1 class="portfolio-title">Ms. HARISHMITHA J</h1>
+          <p class="portfolio-subtitle">Second Year B.Sc (Computer Technology) &bull; PSG College of Arts and Science</p>
+        </div>
+
+        <!-- Certificate Upload Simulator (Interactive feature) -->
+        <div class="cert-control-panel">
+          <h3 style="margin-bottom: 0.5rem; font-size: 1.25rem;">Simulate Certificate Upload</h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">Add training milestones, university scores, or online course completions to verify against your active roadmap.</p>
+          
+          <form id="add-cert-form" onsubmit="event.preventDefault();">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="cert-name">Certificate Name</label>
+                <input type="text" class="form-control" id="cert-name" placeholder="e.g. Stanford Machine Learning Specialization" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="cert-issuer">Issuing Organization</label>
+                <input type="text" class="form-control" id="cert-issuer" placeholder="e.g. Coursera / Stanford" required>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="cert-date">Date of Issuance</label>
+                <input type="date" class="form-control" id="cert-date" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="cert-period">Training Duration / Details</label>
+                <input type="text" class="form-control" id="cert-period" placeholder="e.g. 16 hours of lectures & labs" required>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-primary" style="width: 100%; margin-top: 0.5rem;">Upload & Verify Certificate</button>
+          </form>
+        </div>
+
+        <!-- Grid of Available Certificates -->
+        <h2 style="font-size: 1.6rem; margin-bottom: 1.2rem;">My Verified Credentials</h2>
+        <div class="cert-grid" id="cert-cards-container">
+          <!-- Populated from data.js -->
+        </div>
+
+        <!-- Visual Certificate Frame Renderer -->
+        <div class="cert-preview-frame" id="active-cert-preview">
+          <h3 style="margin-bottom: 1rem; text-align: center; color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Digital Credential Document Render</h3>
+          
+          <!-- High-fidelity simulated print rendering -->
+          <div class="cert-document" id="printable-certificate">
+            <!-- Dynamic certificate rendering container -->
+          </div>
+          
+          <div style="margin-top: 1.5rem; text-align: center;">
+            <button class="btn-secondary" onclick="window.print()" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+              🖨️ Print / Save as PDF Reference
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border-color); background-color: var(--bg-secondary); margin-top: 4rem;">
+      <p>&copy; 2026 HARISHMITHA Soft Copy Wallet. Registered Register No: 24BCT016.</p>
+    </footer>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    // Local script to manage credentials database
+    let db = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Sync LocalStorage
+      if (!localStorage.getItem('harishmitha_user_db')) {
+        localStorage.setItem('harishmitha_user_db', JSON.stringify(window.AppDB));
+      }
+      db = JSON.parse(localStorage.getItem('harishmitha_user_db'));
+
+      initThemeToggle();
+      renderCertificates();
+      
+      // Auto-preview first certificate (Internship)
+      if (db.certifications.length > 0) {
+        previewCertificate(db.certifications[0].id);
+      }
+
+      // Add certification handler
+      const form = document.getElementById('add-cert-form');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const name = document.getElementById('cert-name').value;
+        const issuer = document.getElementById('cert-issuer').value;
+        const dateRaw = document.getElementById('cert-date').value; // YYYY-MM-DD
+        const period = document.getElementById('cert-period').value;
+        
+        // Format date to DD.MM.YYYY
+        const dateParts = dateRaw.split('-');
+        const date = `${dateParts[2]}.${dateParts[1]}.${dateParts[0]}`;
+
+        const newCert = {
+          id: "cert_" + Date.now(),
+          name: name,
+          issuer: issuer,
+          recipient: db.users[0].name,
+          college: db.users[0].college,
+          date: date,
+          period: period,
+          verified: true,
+          grade: "Completed successfully",
+          details: "Verified via student credentials wallet uploads."
+        };
+
+        // Add to db
+        db.certifications.push(newCert);
+        
+        // Push achievement to dashboard
+        db.userProgress.achievements.push({
+          id: "ach_" + Date.now(),
+          name: name.slice(0, 18) + "...",
+          desc: `Completed course from ${issuer}`,
+          date: date,
+          icon: "🎓"
+        });
+
+        localStorage.setItem('harishmitha_user_db', JSON.stringify(db));
+        
+        // Reset form
+        form.reset();
+        renderCertificates();
+        previewCertificate(newCert.id);
+        
+        // Scroll to preview
+        document.getElementById('active-cert-preview').scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    function initThemeToggle() {
+      const themeToggle = document.getElementById('theme-toggle');
+      const themeMoon = document.getElementById('theme-moon');
+      const themeSun = document.getElementById('theme-sun');
+      
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      updateThemeIcons(savedTheme);
+      
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcons(newTheme);
+      });
+
+      function updateThemeIcons(theme) {
+        if (theme === 'dark') {
+          themeMoon.style.display = 'none';
+          themeSun.style.display = 'block';
+        } else {
+          themeMoon.style.display = 'block';
+          themeSun.style.display = 'none';
+        }
+      }
+    }
+
+    function renderCertificates() {
+      const container = document.getElementById('cert-cards-container');
+      container.innerHTML = '';
+
+      db.certifications.forEach(cert => {
+        const card = document.createElement('div');
+        card.className = 'cert-list-card';
+        card.onclick = () => previewCertificate(cert.id);
+        card.innerHTML = `
+          <div class="cert-list-title">🥇 ${cert.name}</div>
+          <div class="cert-list-issuer">Issuer: <strong>${cert.issuer}</strong></div>
+          <div class="cert-list-meta">
+            <span>Date: ${cert.date}</span>
+            <span style="color: var(--success); font-weight: 600;">✓ Verified</span>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function previewCertificate(certId) {
+      const cert = db.certifications.find(c => c.id === certId);
+      if (!cert) return;
+
+      const doc = document.getElementById('printable-certificate');
+      
+      if (cert.id === 'cert_ngb_ds') {
+        // High fidelity rendering for NGB Tech Solutions Internship Certificate
+        doc.innerHTML = `
+          <!-- Watermark -->
+          <div class="cert-watermark">NGB TECH</div>
+          
+          <!-- Logo & Header -->
+          <div class="cert-logo">NGE</div>
+          <div class="cert-org-details">
+            <strong>NGB Tech Solutions International Private Limited</strong><br>
+            CIN: U72900TZ021PTC036441 | TAN: CMBN06038E | GST IN: 33AAHCN6599DlZ7<br>
+            AK Complex, 2nd Floor, 6th Street, Gandhipuram, Coimbatore, Tamil Nadu-641012.<br>
+            Tel.No: +919500586998 | Email: help@ngbtechsolutions.in | Web: www.ngbtechsolutions.in
+          </div>
+          
+          <!-- Date -->
+          <div class="cert-date-header">Date: ${cert.date}</div>
+          
+          <!-- Main Title -->
+          <div class="cert-main-headline">TO WHOMSOEVER IT MAY CONCERN</div>
+          
+          <!-- Body Text -->
+          <div class="cert-text">
+            This is to certify that <span class="cert-recipient-name">${cert.recipient}</span> who is pursuing 
+            <strong>Second Year B.Sc (Computer Technology)</strong> at <strong>PSG COLLEGE OF ARTS AND SCIENCE</strong>, 
+            Coimbatore, Tamil Nadu, India has successfully completed Internship Training in <span class="cert-topic">“Data Science 
+            with Python”</span> in our Organization as a partial fulfillment of her academic requirement during the 
+            period <strong>11th May 2026 to 30th May 2026</strong>.
+            <br><br>
+            During this period her performance and character have been good.
+            <br>
+            All the best for your future endeavor’s.
+          </div>
+          
+          <!-- Signature Row -->
+          <div class="cert-footer-row">
+            <div class="cert-gold-seal">
+              VERIFIED<br>CREDENTIAL<br>★ NGB ★
+            </div>
+            
+            <div class="cert-signature-block">
+              <div class="cert-signature-image">Dinesh</div>
+              <div class="cert-signature-line">For NGB Tech Solutions International Private Limited</div>
+              <div style="font-size:0.85rem; color:#475569; font-weight:600; margin-top:2px;">Director</div>
+            </div>
+          </div>
+        `;
+      } else {
+        // Generic template for uploaded certificates
+        doc.innerHTML = `
+          <!-- Watermark -->
+          <div class="cert-watermark" style="font-size: 5rem; color:rgba(181, 148, 16, 0.02);">${cert.issuer.split(' ')[0]}</div>
+          
+          <!-- Header -->
+          <div class="cert-logo">🎓 CERTIFICATE</div>
+          <div class="cert-org-details" style="text-align: center; border-bottom: 1.5px solid #cbd5e1; font-family:var(--font-sans); font-size:1rem; padding-bottom: 0.5rem;">
+            <strong>${cert.issuer}</strong> &bull; Verification Registry
+          </div>
+          
+          <!-- Date -->
+          <div class="cert-date-header">Issued: ${cert.date}</div>
+          
+          <!-- Title -->
+          <div class="cert-main-headline" style="font-size:1.8rem; text-transform: uppercase;">Certificate of Completion</div>
+          
+          <!-- Text -->
+          <div class="cert-text" style="font-size: 1.2rem; font-family:var(--font-sans); line-height: 2;">
+            This is proudly presented to
+            <br>
+            <span class="cert-recipient-name">${cert.recipient}</span>
+            <br>
+            for successfully mastering the curriculum and assessments for
+            <br>
+            <span class="cert-topic" style="font-size: 1.4rem;">“${cert.name}”</span>
+            <br>
+            as verified on <strong>${cert.date}</strong>. Duration: ${cert.period}.
+          </div>
+          
+          <!-- Footer -->
+          <div class="cert-footer-row">
+            <div class="cert-gold-seal">
+              OFFICIAL<br>GRADUATE<br>★ SECURED ★
+            </div>
+            
+            <div class="cert-signature-block">
+              <div class="cert-signature-image" style="font-family:'Times New Roman'; font-size:1.3rem; letter-spacing:3px;">APPROVED</div>
+              <div class="cert-signature-line">Authorized Credential Registry</div>
+              <div style="font-size:0.8rem; color:#64748b;">ID: ${cert.id.toUpperCase()}</div>
+            </div>
+          </div>
+        `;
+      }
+    }
+  </script>
+</body>
+</html>
